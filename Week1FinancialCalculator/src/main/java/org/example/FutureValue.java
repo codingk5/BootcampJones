@@ -17,7 +17,28 @@ public class FutureValue {
         System.out.println("What is the number of years?");
         double t = scanner.nextDouble();
 
+
+
+        double n =365;
+        double newR = (r / 100) / n;
+        double FV = P * Math.pow(1 + newR, n * t);
+        double intialPart = P * (1 + newR/n);
+        double totalInterest = FV - P;
+
+        System.out.printf("Your current value is %.2f. The interest collected is %f.", totalInterest, FV);
+
+
+
         // FV = P * ( 1 + (r / 365))^(365 * t)
+
+
+
+
+
+
+
+
+
 
 
 
