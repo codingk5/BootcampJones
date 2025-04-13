@@ -29,7 +29,7 @@ public class FutureValue {
 
         System.out.printf("Your current value is %.2f. The interest collected is %.2f.", totalInterest, FV);
 
-
+      scanner.close();
 
 
 

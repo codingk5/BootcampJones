@@ -1,6 +1,6 @@
 package org.example;
 
-import java.math.BigDecimal;
+
 import java.util.Scanner;
 
 public class ThatPresentValue {
@@ -32,7 +32,7 @@ public class ThatPresentValue {
 
         System.out.printf("Your present value is $%.2f", PV);
 
-
+        scanner.close();
 
         }
     }
