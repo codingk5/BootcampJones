@@ -16,7 +16,6 @@ public class ThatPresentValue {
 
         System.out.println("What is your monthly interest rate?");
         double r = scanner.nextDouble();
-
         double newR = (r / 12 / 100);
 
 
