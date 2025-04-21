@@ -33,7 +33,7 @@ public class Main {
                     returnBook(inventory, scanner);
                     break;
                 case 3:
-                    showCheckedOutBooks(inventory);
+                    checkOutBook(inventory, scanner);
                     break;
                 case 4:
                     System.out.println("Thank You Come Back and Visit Us!");
@@ -46,8 +46,23 @@ public class Main {
     }
     // i used the Book book : inventory. My i's kept coming back with an error
 
+    public static void checkOutBook(Book[] inventory, Scanner scanner) {
+        System.out.println("Book In Stock");
+        for (Book book : inventory) {
+            if (book != null && book.isCheckedOut()) {
+                System.out.println(book.getTitle() + " (Checked out by " + book.getCheckedOutTo() + ")");
+            }
+
+            System.out.println("Name");
+            scanner.nextLine();
+            System.out.println("You have checked out " + book.getTitle());
+            return;
+
+        }
+    }
+
     public static void displayBooks(Book[] inventory) {
-        System.out.println("Available Books:");
+        System.out.println("Available Books");
         for (Book book : inventory) {
             if (book != null && !book.isCheckedOut()) {
                 System.out.println(book.getTitle());
@@ -65,7 +80,7 @@ public class Main {
             if (book != null && book.getTitle().equalsIgnoreCase(returnBookTitle)) {
                 if (book.isCheckedOut()) {
                     book.returnBook();
-                    System.out.println("Thank you! The book has been returned.");
+                    System.out.println("The book has been returned.");
                 } else {
                     System.out.println("That book is available.");
                 }
@@ -75,18 +90,11 @@ public class Main {
         }
 
         if (!isCheckedIn) {
-            System.out.println("Book not in stock.");
+            System.out.println("Book not in not available.");
         }
     }
 
-    public static void showCheckedOutBooks(Book[] inventory) {
-        System.out.println("Checked Out Books:");
-        for (Book book : inventory) {
-            if (book != null && book.isCheckedOut()) {
-                System.out.println(book.getTitle() + " (Checked out by: " + book.getCheckedOutTo() + ")");
-            }
-        }
-    }
+
 }
 
 
