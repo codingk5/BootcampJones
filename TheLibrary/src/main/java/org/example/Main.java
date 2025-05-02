@@ -53,7 +53,7 @@ public class Main {
                 System.out.println(book.getTitle() + " (Checked out by " + book.getCheckedOutTo() + ")");
             }
 
-            System.out.println("Name");
+            System.out.println("Name of Book");
             scanner.nextLine();
             System.out.println("You have checked out " + book.getTitle());
             return;
@@ -90,7 +90,7 @@ public class Main {
         }
 
         if (!isCheckedIn) {
-            System.out.println("Book not in not available.");
+            System.out.println("Book not available.");
         }
     }
 
