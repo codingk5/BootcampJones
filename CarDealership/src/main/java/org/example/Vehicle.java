@@ -1,12 +1,5 @@
 package org.example;
 
-import javax.swing.*;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import static org.example.Menu.DealershipUI.inventory;
-
 public class Vehicle {
     private int vin;
     private int year;
@@ -101,17 +94,7 @@ public class Vehicle {
         );
 
     }
-    public static void saveInventoryToFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("vehicles.txt"))) {
-            for (Vehicle vehicle : inventory) {
-                writer.println(String.format("%d|%d|%s|%s|%s|%s|%d|%.2f",
-                        vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(),
-                        vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice()));
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not save vehicles: " + e.getMessage());
-        }
-    }
+
 
 
 

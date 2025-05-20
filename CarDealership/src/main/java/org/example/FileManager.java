@@ -1,17 +1,23 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.swing.*;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import static java.lang.String.format;
 
 
 public class FileManager {
         public Dealership getDealership() {
             Dealership dealership = new Dealership("","","",null);
+            FileInputStream fileInputStream = null;
+            Scanner scanner = null;
             try {
-                FileReader fileReader = new FileReader("src/main/resources/inventory.csv");
+                fileInputStream = new FileInputStream("src/main/resources/inventory2.csv");
+                FileReader fileReader = new FileReader("src/main/resources/inventory2.csv");
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
+                scanner = new Scanner(fileInputStream);
 
                 String input;
                 boolean isFirstLine = true;
@@ -54,8 +60,29 @@ public class FileManager {
                 System.out.println("Failed to load file.");
                 ex.printStackTrace();
                 return dealership;
+            }   }
+
+    public static void saveDealership(Dealership dealership) throws IOException {
+        try {
+            FileWriter fileWriter = new FileWriter("src/main/resources/inventory2.csv");
+                String headerRow = format("%s|%s|%s %n", dealership.getName(),dealership.getAddress(),dealership.getPhone());
+                fileWriter.write(headerRow);
+            for (Vehicle vehicle : dealership.getAllVehicle()){
+                    String row = format("%d|%d|%s|%s|%s|%s|%d|%.2f", vehicle.getVin(), vehicle.getYear()
+                            , vehicle.getMake(), vehicle.getModel(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+
+                    fileWriter.write(row);
+
             }
+            fileWriter.close();
+        }
+         catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Could not save vehicles: ");
         }
 
+    }
+    }
 
-}
+
+
+
