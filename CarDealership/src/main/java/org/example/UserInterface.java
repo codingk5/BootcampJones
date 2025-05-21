@@ -231,6 +231,7 @@ public class UserInterface {
             Vehicle newVehicle = new Vehicle(vin, year, make, model, type, color, odometer, price);
             dealership.getAllVehicle().add(newVehicle);
             System.out.println("You added a vehicle!");
+
         } catch (Exception e) {
             System.out.println("Something went wrong, try again.");
             scanner.nextLine();
