@@ -47,7 +47,7 @@ public class Dealership {
     public  List<Vehicle> getAllVehicle(){
         return  inventory;
     }
-    public List<Vehicle> getVehicleByPrice(double min, double max){return price;}
+    public List<Vehicle> getVehicleByPrice(double min, double max){return null;}
     public List<Vehicle> getVehicleByMakeModel(String make, String model){return null;}
     public List<Vehicle> getVehicleByYear(int year){return null;}
     public List<Vehicle> getVehicleByColor(String color){return null;}
