@@ -12,6 +12,8 @@ public class SalesContract extends Contract{
         this.isFinanced = isFinanced;
     }
 
+
+
     public double getSALES_TAX() {
         return vehicle.getPrice() * SALES_TAX;
     }
@@ -39,9 +41,10 @@ public class SalesContract extends Contract{
     }
 
     @Override
-    public void printReceicpt() {
-
+    public String printReceicpt() {
+        return printReceipt();
     }
+
 
     @Override
     public double getMonthlyPayment() {
@@ -82,6 +85,6 @@ public class SalesContract extends Contract{
             System.out.println("Financing: NO");
         }
 
-        return null;
+        return printReceipt();
     }
 }

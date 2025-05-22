@@ -49,7 +49,7 @@ public class LeaseContract extends Contract {
     }
 
     @Override
-    public void printReceicpt(){
+    public String printReceicpt(){
         System.out.println("Lease Contract");
         System.out.println("Date: " + getDateOfContract());
         System.out.println("Customer: " + getCustomerName());
@@ -58,5 +58,8 @@ public class LeaseContract extends Contract {
         System.out.printf("Lease Fee: $%.2f\n", leaseFee);
         System.out.printf("Monthly Payment: $%.2f\n", getMonthlyPayment());
         System.out.printf("Total Lease Cost: $%.2f\n", totalPrice());
+
+        return printReceipt();
     }
+
 }

@@ -64,6 +64,6 @@ public abstract class Contract {
     public abstract double totalPrice();
 
 
-    public abstract void printReceicpt();
+    public abstract String printReceicpt();
 }
 

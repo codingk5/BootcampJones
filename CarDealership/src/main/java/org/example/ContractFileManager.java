@@ -52,9 +52,11 @@ public class ContractFileManager {
                         }
 
                         @Override
-                        public void printReceicpt() {
-
+                        public String printReceicpt() {
+                            return printReceipt();
                         }
+
+
                     };
 
                     if (type.equalsIgnoreCase("SALE")) {
