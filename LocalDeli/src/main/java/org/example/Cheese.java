@@ -23,7 +23,7 @@ public class Cheese extends Topping {
         return cheeseOption;
     }
 
-    public static void setCheeseOption(CheeseOption cheeseOption) {
+    public void setCheeseOption(CheeseOption cheeseOption) {
         this.cheeseOption = cheeseOption;
     }
 

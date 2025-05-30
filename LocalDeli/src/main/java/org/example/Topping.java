@@ -21,7 +21,7 @@ public class Topping {
         return toppingType;
     }
 
-    public static void setToppingType(String toppingType) {
+    public void setToppingType(String toppingType) {
         this.toppingType = toppingType;
     }
 

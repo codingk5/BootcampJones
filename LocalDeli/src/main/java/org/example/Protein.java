@@ -9,11 +9,9 @@ public class Protein extends Topping  {
     public double extra;
 
     public Protein(String name, String toppingType,
-                   boolean isExtra, double baseProtein, double extra) {
+                   boolean isExtra) {
         super(name, toppingType);
         this.isExtra = isExtra;
-        this.baseProtein = baseProtein;
-        this.extra = extra;
     }
 
     public boolean isExtra() {

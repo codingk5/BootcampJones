@@ -1,0 +1,1 @@
+org.example.Drink@65b3120a
