@@ -51,9 +51,14 @@ public class LedgerData {
 
 
     public static void displayTransactions(List<Transaction> transactions) {
+        if (transactions.isEmpty()) {
+            System.out.println("No available transactions.");
+            return;
+        }
         for (Transaction transaction : transactions) {
             System.out.println(transaction);
         }
+
     }
 
     public static List<Transaction> getAllDeposits() {
