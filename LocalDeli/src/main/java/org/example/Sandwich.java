@@ -10,7 +10,8 @@ public class Sandwich implements OrderItem {
     private BreadSize breadSize;
     private boolean isToasted;
     private List<Topping> toppingsList;
-    private ArrayList<VeggieOption> toppings = new ArrayList<>();
+    private List<VeggieOption> toppings = new ArrayList<>();
+    private List<ProteinList> toppings1 = new ArrayList<>();
 
     public Sandwich(BreadSize breadSize) {
         this.breadSize = breadSize;
@@ -32,23 +33,28 @@ public class Sandwich implements OrderItem {
         isToasted = toasted;
     }
 
-    public ArrayList<VeggieOption> getToppings() {
+    public List<VeggieOption> getToppings() {
         return toppings;
     }
 
-    public void setToppings(ArrayList<VeggieOption> toppings) {
+    // add topping to san
+    public void addVeggieTopping(List<VeggieOption> topping) {
+
+    }
+
+    public void setToppings(List<VeggieOption> toppings) {
         this.toppings = toppings;
     }
-    // add topping to san
-    public void addVeggieTopping(VeggieOption topping) {
-        this.toppings.add(topping);
-    }
+
+
+    public void setToppings1(List<ProteinList> toppings1){this.toppings = toppings;}
 
     public void setSauces(List<Sauces> sauces) {
     }
 
-    public void addTopping(Topping topping){
-        this.toppingsList.add(topping);
+
+    public void addTopping(List<Topping> topping){
+        this.toppingsList.addAll(topping);
     }
 
     @Override

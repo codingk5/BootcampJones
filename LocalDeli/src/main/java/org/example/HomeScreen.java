@@ -2,6 +2,7 @@ package org.example;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,7 +57,10 @@ public class HomeScreen {
                     break;
                 case 4:
                     FileManager.save(order);
+
                     System.out.println("Thanks for visiting, come again.");
+                    break;
+                case 0:
                     break;
             }
 
@@ -66,7 +70,7 @@ public class HomeScreen {
     private static Sandwich buildSandwich() {
         Scanner scanner = new Scanner(System.in);
         // Ask for bread size
-        System.out.println("What size sandwich would you like? (e.g., 4in, 6in, 8in)");
+        System.out.println("What size sandwich would you like? (e.g., four_inch, six_inch, eight_inch)");
         String breadSizeInput = scanner.nextLine();
         BreadSize size = BreadSize.valueOf(breadSizeInput.toUpperCase());
         Sandwich sandwich = new Sandwich(size);
@@ -82,77 +86,129 @@ public class HomeScreen {
             System.out.println("Invalid bread type. Skipping.");
         }
 
-        // Ask for meat
-        System.out.println("Would you like meat? (yes, no, extra to skip)");
-        String meatChoice = scanner.nextLine().toLowerCase();
-        if (meatChoice.equals("yes")) {
-            System.out.println("What type of meat would you like?");
-            String proteinType = scanner.nextLine().toUpperCase();
-            try {
-                ProteinList proteinList = ProteinList.valueOf(proteinType);
-                Protein protein = new Protein(proteinType, "Meat", false);
-                sandwich.addTopping(protein);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid meat. Skipping.");
-            }
+        System.out.println("Choose your proteins (type 'done' when finished):");
+        for (ProteinList p : ProteinList.values()) {
+            System.out.println("- " + p.name().toLowerCase());
         }
 
-        // Ask for cheese
-        System.out.println("Would you like cheese? (yes, no, extra to skip)");
-        String cheeseChoice = scanner.nextLine().toLowerCase();
-        if (cheeseChoice.equals("yes")) {
-            System.out.println("What kind of cheese?");
-            String cheeseType = scanner.nextLine().toUpperCase();
+        ArrayList<Topping> selectedProteins = new ArrayList<>();
+
+        while (true) {
+            String proteinInput = scanner.nextLine().toUpperCase();
+            if (proteinInput.equals("DONE")) break;
+
             try {
-                CheeseOption cheese = CheeseOption.valueOf(cheeseType);
-                Cheese cheesePick = new Cheese(cheeseType, "Cheese", cheese, false);
-                sandwich.addTopping(cheesePick);
+                ProteinList proteinOption = ProteinList.valueOf(proteinInput);
+
+                System.out.println("Would you like extra " + proteinOption.name().toLowerCase() + "? (yes/no)");
+                String extraInput = scanner.nextLine().toLowerCase();
+                boolean isExtra = extraInput.equals("yes");
+
+                Protein proteinPick = new Protein(
+                        proteinOption.name(),   // name
+                        "Protein",              // toppingType
+                        isExtra                 // extra
+                );
+
+                selectedProteins.add(proteinPick);
+
             } catch (IllegalArgumentException e) {
-                System.out.println("Invalid cheese. Skipping.");
+                System.out.println("Invalid protein. Try again.");
             }
+            break;
         }
+
+// Add all selected proteins to sandwich
+
+
+
+
+
+        System.out.println("Choose your cheese (type 'done' when finished):");
+        for (CheeseOption c : CheeseOption.values()) {
+            System.out.println("- " + c.name().toLowerCase());
+        }
+
+        ArrayList<Topping> selectedCheeses = new ArrayList<>();
+
+        while (true) {
+            String cheeseInput = scanner.nextLine().toUpperCase();
+            if (cheeseInput.equals("DONE")) break;
+
+            try {
+                CheeseOption cheeseOption = CheeseOption.valueOf(cheeseInput);
+
+                System.out.println("Would you like extra " + cheeseOption.name().toLowerCase() + "? (yes/no)");
+                String extraInput = scanner.nextLine().toLowerCase();
+                boolean isExtra = extraInput.equals("yes");
+
+                Cheese cheesePick = new Cheese(
+                        cheeseOption.name(),     // name
+                        "Cheese",                // toppingType
+                        cheeseOption,            // enum value
+                        isExtra                  // extra or not
+                );
+
+                selectedCheeses.add(cheesePick);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid cheese. Try again.");
+            }
+            break;
+        }
+
+
+
 
         // Ask for toppings
-        System.out.println("Choose your toppings (type 'done' when finished):");
-        for (VeggieOption v : VeggieOption.values()) {
-            System.out.println("- " + v.name().toLowerCase());
-        }
-
-        ArrayList<VeggieOption> toppings = new ArrayList<>();
-        while (true) {
-            String toppingInput = scanner.nextLine().toUpperCase();
-            if (toppingInput.equals("DONE")) break;
-            try {
-                VeggieOption topping = VeggieOption.valueOf(toppingInput);
-                toppings.add(topping);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid topping. Try again.");
+            System.out.println("Choose your toppings (type 'done' when finished):");
+            for (VeggieOption v : VeggieOption.values()) {
+                System.out.println("- " + v.name().toLowerCase());
             }
-        }
-        sandwich.setToppings(toppings);
 
-        // Ask for sauces
-        System.out.println("Choose your sauces (type 'done' when finished):");
-        for (Sauces sauces : Sauces.values()) {
-            System.out.println("- " + sauces.name().toLowerCase());
-        }
-
-        List<Sauces> sauces = new ArrayList<>();
-        while (true) {
-            String sauceInput = scanner.nextLine().toUpperCase();
-            if (sauceInput.equals("DONE")) break;
-            try {
-                Sauces sauce1 = Sauces.valueOf(sauceInput);
-                sauces.add(sauce1);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid sauce. Try again.");
+            ArrayList<VeggieOption> toppings = new ArrayList<>();
+            while (true) {
+                String toppingInput = scanner.nextLine().toUpperCase();
+                if (toppingInput.equals("DONE")) break;
+                try {
+                    VeggieOption topping = VeggieOption.valueOf(toppingInput);
+                    toppings.add(topping);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid topping. Try again.");
+                }
             }
-        }
-        sandwich.setSauces(sauces);
 
-        return sandwich;
-    }
+            // Ask for sauces
+            System.out.println("Choose your sauces (type 'done' when finished):");
+            for (Sauces sauces : Sauces.values()) {
+                System.out.println("- " + sauces.name().toLowerCase());
+            }
+
+            List<Sauces> sauces = new ArrayList<>();
+            while (true) {
+                String sauceInput = scanner.nextLine().toUpperCase();
+                if (sauceInput.equals("DONE")) break;
+                try {
+                    Sauces sauce1 = Sauces.valueOf(sauceInput);
+                    sauces.add(sauce1);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid sauce. Try again.");
+                }
+
+            }
+
+
+
+
+
+
+            return sandwich;
+        }
+
+
+
 }
+
 
 
 

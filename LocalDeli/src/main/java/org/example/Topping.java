@@ -1,6 +1,6 @@
 package org.example;
 
-public class Topping {
+public abstract class Topping {
     private  String name;
     private String toppingType;
 
@@ -26,6 +26,6 @@ public class Topping {
     }
 
     public double getCost(BreadSize breadSize) {
-        return  0;
+        return  getCost(breadSize);
     }
 }
