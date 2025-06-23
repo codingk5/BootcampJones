@@ -2,25 +2,22 @@ package org.example;
 
 public class Vehicle {
     private int vin;
-    private int year;
     private String make;
     private String model;
-    private String vehicleType;
-    private String color;
-    private int odometer;
+    private int year;
     private double price;
+    private boolean sold;
 
     // constructor
 
-    public Vehicle(int vin, int year, String make, String model, String vehicleType, String color, int odometer, double price) {
+
+    public Vehicle(int vin, String make, String model, int year, double price, boolean sold) {
         this.vin = vin;
-        this.year = year;
         this.make = make;
         this.model = model;
-        this.vehicleType = vehicleType;
-        this.color = color;
-        this.odometer = odometer;
+        this.year = year;
         this.price = price;
+        this.sold = sold;
     }
 
     public int getVin() {
@@ -29,14 +26,6 @@ public class Vehicle {
 
     public void setVin(int vin) {
         this.vin = vin;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 
     public String getMake() {
@@ -55,28 +44,12 @@ public class Vehicle {
         this.model = model;
     }
 
-    public String getVehicleType() {
-        return vehicleType;
+    public int getYear() {
+        return year;
     }
 
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public int getOdometer() {
-        return odometer;
-    }
-
-    public void setOdometer(int odometer) {
-        this.odometer = odometer;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public double getPrice() {
@@ -86,17 +59,24 @@ public class Vehicle {
     public void setPrice(double price) {
         this.price = price;
     }
-    public String toString(){
-//        return vin + " | " + year + " | " + make + " " + model + " | " + vehicleType + " | " + color + " | " + odometer + " | " + price;
-        return String.format(
-                "%d|%d|%s|%s|%s|%s|%d|$%.2f",
-                vin, year, make, model, vehicleType, color, odometer, price
-        );
 
+    public boolean isSold() {
+        return sold;
     }
 
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vin=" + vin +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", price=" + price +
+                ", sold=" + sold +
+                '}';
+    }
 }

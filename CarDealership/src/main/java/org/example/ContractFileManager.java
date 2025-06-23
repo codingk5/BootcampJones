@@ -38,7 +38,7 @@ public class ContractFileManager {
                     double leaseFee = 0.07;
 
 
-                    Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                    Vehicle vehicle = new Vehicle(vin, make, model, year, price, sold);
                     Contract contract = new Contract(dateOfContract, customerName, customerEmail, totalPrice, monthlyPayment, vehicle) {
                         @Override
                         public String printReceipt() {
